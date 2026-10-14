@@ -1,0 +1,33 @@
+{
+  "kind": "evm_project",
+  "token": {
+    "contract": "LaunchToken",
+    "name": "Loom",
+    "symbol": "LOOM",
+    "decimals": 18
+  },
+  "contracts": [
+    {
+      "contract": "LoomCollection",
+      "constructorArgs": [
+        "$owner",
+        "$owner"
+      ]
+    },
+    {
+      "contract": "LoomFactory",
+      "constructorArgs": [
+        "$contract:LoomCollection",
+        "$owner",
+        "$owner"
+      ]
+    }
+  ],
+  "pool": {
+    "pairedCurrency": "0x0000000000000000000000000000000000000000",
+    "fee": 12500,
+    "tickSpacing": 60,
+    "initialPrice": "79228162514264337593543950336"
+  },
+  "notes": "LoomCollection is the locked ERC-721 implementation for collections created through LoomFactory. Its immutable PLATFORM and RESERVE recipients, and LoomFactory's immutable PLATFORM recipient and creation pauser, all resolve to the launch owner through $owner. LoomFactory creates and initializes collection clones atomically after launch; the caller of createCollection owns the new collection. Launch deployment requires no initialization calls. The pool pairs LOOM with native ETH at 1.25%; the deployment service derives its opening price from the launch policy."
+}
